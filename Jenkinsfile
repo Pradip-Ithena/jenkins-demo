@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Chekout') {
             steps {
-                git url: 'https://github.com/bbachi/nodejs-restapi-mongo.git', branch: 'main'
+                git 'https://github.com/Pradip-Ithena/jenkins-demo.git'
                 echo 'Checkout Completed'
             }
         }
