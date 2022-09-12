@@ -1,0 +1,54 @@
+<div id="data-grid-demo">
+  <dx-data-grid id="gridContainer" [dataSource]="userData" keyExpr="id" [showBorders]="true"
+    (onRowInserted)="addNewUser($event)" (onRowUpdated)="updateUser($event)" (onRowRemoved)="deleteUser($event)">
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true">
+      <dxo-popup title="User Details" [showTitle]="true" [width]="700" [height]="525">
+      </dxo-popup>
+      <dxo-form>
+
+        <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+          <dxi-item dataField="firstName"></dxi-item>
+          <dxi-item dataField="lastName"></dxi-item>
+          <dxi-item dataField="userName"></dxi-item>
+          <dxi-item dataField="email"></dxi-item>
+          <dxi-item dataField="password"></dxi-item>
+        </dxi-item>
+
+      </dxo-form>
+    </dxo-editing>
+
+    <dxi-column dataField="firstName">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule type="pattern" [pattern]="namePattern" message="Do not use digits in the Name">
+      </dxi-validation-rule>
+      <dxi-validation-rule type="stringLength" [min]="3" [max]="30"
+        message="first Name must have at least 3 to 30 characters">
+      </dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="lastName">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule type="pattern" [pattern]="namePattern" message="Do not use digits in the Name">
+      </dxi-validation-rule>
+      <dxi-validation-rule type="stringLength" [min]="3" [max]="30"
+        message="last Name must have at least 3 to 30 characters">
+      </dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="userName">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule type="stringLength" [min]="3" [max]="30"
+        message="userName must have at least 3 to 30 characters">
+      </dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="email">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule type="email"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="password" [visible]="false">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule type="pattern" [pattern]="passPattern"
+        message="password must have at least 8 characters,at least one uppercase letter,one lowercase letter,one number and one special character.">
+      </dxi-validation-rule>
+    </dxi-column>
+  </dx-data-grid>
+</div>
